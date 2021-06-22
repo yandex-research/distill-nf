@@ -13,9 +13,12 @@ The approach transfers the knowledge from Normalizing Flows (NF) to efficient fe
 
 ## Citation
 
-@article{TODO,
-  title={Distilling the Knowledge from Normalizing Flows},
-  author={Baranchuk, Dmitry and Aliev, Vladimir and Babenko, Artem}
-  journal={arXiv preprint arXiv:TODO},
-  year={2021}
+```
+@inproceedings{baranchuk2021distilling,
+    title={Distilling the Knowledge from Normalizing Flows},
+    author={Dmitry Baranchuk and Vladimir Aliev and Artem Babenko},
+    booktitle={ICML Workshop on Invertible Neural Networks, Normalizing Flows, and Explicit Likelihood Models},
+    year={2021},
+    url={https://openreview.net/forum?id=fEPhiuZS9TV}
 }
+```

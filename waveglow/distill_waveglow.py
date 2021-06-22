@@ -8,8 +8,6 @@
 import torch
 
 import logging
-import itertools
-
 import torch.distributed as dist
 import torch.utils.data as data
 import torch.nn as nn
@@ -30,8 +28,6 @@ from utils.lr_schedules import OneCycleSchedule, MultiCycleSchedule, get_learnin
 from models.waveglow_teacher import WaveGlowTeacher, DeterministicWaveGlowTeacher
 from models.students import FlowStudent, WideFlowStudent, AffineStudent, WaveNetStudent
 from models import defaults
-
-from ya_tools import nirvana_tools
 
 log = setup_glog_stdout(logging.getLogger())
 log.setLevel(logging.INFO)
@@ -69,14 +65,13 @@ def train(args):
         rank = dist.get_rank()
 
     if rank == 0:
-        nirvana_tools.copy_snapshot_to_out(out=args.logdir)
         logger = Logger(args.logdir, args.eval_interval)
 
     if args.local_rank is not None:
         # ensure that WaveGlowLogger.__init__(...) has finished
         dist.barrier()
 
-    ckpt = Logger.load_last_checkpoint(args.logdir)  # FIXME: why logger?
+    ckpt = Logger.load_last_checkpoint(args.logdir)
 
     if args.deterministic_teacher:
         infer_teacher = DeterministicWaveGlowTeacher.load(args.teacher_path, train=False, device=device, fp16=True)
@@ -242,20 +237,13 @@ def train(args):
         if hasattr(train_loader.batch_sampler, 'set_epoch'):
             train_loader.batch_sampler.set_epoch(epoch)
 
-        if args.debug_single_sample_preload:
-            sample = next(iter(train_loader))
-            train_samples = itertools.repeat(sample, len(train_loader))
-        else:
-            train_samples = train_loader
-
-        for mel, _unused_audio in train_samples:
+        for mel, _unused_audio in train_loader:
             with pp("step"):
                 if batch_counter == 0:
                     model.zero_grad()
 
                 with pp("forward"):
-                    input_audio = _unused_audio.to(device) if args.distill_on_real else None
-                    loss, loss_mae, loss_stft = distillation_loss(mel.to(device), audio=input_audio, sigma=args.sigma)
+                    loss, loss_mae, loss_stft = distillation_loss(mel.to(device), sigma=args.sigma)
 
                 with pp("backward"):
                     loss.backward()
@@ -310,8 +298,7 @@ def train(args):
 
                         with torch.no_grad(), pp("evaluate"):
                             for mel, _unused_audio in validation_loader:
-                                input_audio = _unused_audio.to(device) if args.distill_on_real else None
-                                loss, loss_mae, loss_stft = distillation_loss(mel.to(device), audio=input_audio, sigma=args.sigma)
+                                loss, loss_mae, loss_stft = distillation_loss(mel.to(device), sigma=args.sigma)
                                 val_loss_numerator += loss.item() * len(mel)
                                 val_loss_mae_numerator += loss_mae.item() * len(mel)
                                 val_loss_stft_numerator += loss_stft.item() * len(mel)

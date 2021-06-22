@@ -8,9 +8,9 @@
 import torch
 import torch.nn.functional as F
 
-# from distutils.version import LooseVersion
+from distutils.version import LooseVersion
 
-# is_pytorch_17plus = LooseVersion(torch.__version__) >= LooseVersion("1.7")
+is_pytorch_17plus = LooseVersion(torch.__version__) >= LooseVersion("1.7")
 
 
 def stft(x, fft_size, hop_size, win_length, window):
@@ -24,12 +24,12 @@ def stft(x, fft_size, hop_size, win_length, window):
     Returns:
         Tensor: Magnitude spectrogram (B, #frames, fft_size // 2 + 1).
     """
-    # if is_pytorch_17plus:
-    #     x_stft = torch.stft(
-    #         x, fft_size, hop_size, win_length, window, return_complex=False
-    #     )
-    # else:
-    x_stft = torch.stft(x, fft_size, hop_size, win_length, window)
+    if is_pytorch_17plus:
+        x_stft = torch.stft(
+            x, fft_size, hop_size, win_length, window, return_complex=False
+        )
+    else:
+        x_stft = torch.stft(x, fft_size, hop_size, win_length, window)
     real = x_stft[..., 0]
     imag = x_stft[..., 1]
 

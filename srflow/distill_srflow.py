@@ -5,7 +5,6 @@
 
 import logging
 
-import torch.distributed as dist
 import torch.utils.data as data
 import torch.nn as nn
 import torch
@@ -14,7 +13,6 @@ import math
 import random
 import numpy as np
 import argparse
-import os 
 
 from utils.logger import Logger
 from utils.logging_utils import setup_glog_stdout

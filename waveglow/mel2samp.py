@@ -27,7 +27,6 @@
 import os
 import random
 import argparse
-import json
 import torch
 import torch.utils.data
 import sys
@@ -52,10 +51,12 @@ MEL_SUFFIX = ".mel.npy"
 TRAIN_SPLIT_NAME = "train"
 VAL_SPLIT_NAME = "val"
 
+
 def files_to_list(data_root, split):
     data_root = Path(data_root) / split
     files = [wav_path for wav_path in data_root.glob("*.wav")]
     return files
+
 
 def files_from_txt(filename):
     """
@@ -67,12 +68,13 @@ def files_from_txt(filename):
     files = [f.rstrip() for f in files]
     return files
 
+
 def load_wav_to_torch(full_path):
     """
     Loads wavdata into torch array
     """
     sampling_rate, data = read(full_path)
-    return torch.from_numpy(data).float(), sampling_rate
+    return torch.from_numpy(data.copy()).float(), sampling_rate
 
 
 class Mel2Samp(torch.utils.data.Dataset):

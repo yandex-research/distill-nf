@@ -16,8 +16,9 @@ The training is performed on the [LJ Speech](https://keithito.com/LJ-Speech-Data
 1. Download the data: `bash download_ljspeech.sh` (3 Gb);
 2. Download the WaveGlow teacher and pretrained students:
 ```cd ./pretrained_models && bash download_pretrained_models.sh``` (718 Mb)
-3. **Training** `bash ./scripts/train_wg_student_v{1,2,3}.sh`
-   **Evaluation** `./notebooks/evaluation.ipynb`
+3. ***Training:*** `bash ./scripts/train_wg_student_v{1,2,3}.sh`
+
+   ***Evaluation:*** `./notebooks/evaluation.ipynb`
 
 ## Audio Samples
 

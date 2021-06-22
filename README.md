@@ -1,6 +1,6 @@
-# Distill the Knowledge from Normalizing Flows
+# Distilling the Knowledge from Normalizing Flows
 
-Official implementation of the paper [Distill the Knowledge from Normalizing Flows](TODO) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
+Official implementation of the paper [Distilling the Knowledge from Normalizing Flows](TODO) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
 
 ## Overview
 
@@ -14,7 +14,7 @@ The approach transfers the knowledge from Normalizing Flows (NF) to efficient fe
 ## Citation
 
 @article{TODO,
-  title={Distill the Knowledge from Normalizing Flows},
+  title={Distilling the Knowledge from Normalizing Flows},
   author={Baranchuk, Dmitry and Aliev, Vladimir and Babenko, Artem}
   journal={arXiv preprint arXiv:TODO},
   year={2021}

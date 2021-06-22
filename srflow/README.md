@@ -9,8 +9,8 @@ The students are learned on the DF2K dataset (A merged training dataset of [DIV2
 
 ### Preparation Steps
 
-* **Training** Download the preprocessed train sets by ```cd ./data && bash download_train_data.sh``` (56 Gb). The data is preprocessed according to the [BasicSR](https://github.com/xinntao/BasicSR/blob/master/docs/DatasetPreparation.md#div2k) instructions.
-* **Evaluation** Download validation images by ```cd ./data && bash download_eval_data.sh``` (506 Mb).
+* ***Training:*** Download the preprocessed train sets by ```cd ./data && bash download_train_data.sh``` (56 Gb). The data is preprocessed according to the [BasicSR](https://github.com/xinntao/BasicSR/blob/master/docs/DatasetPreparation.md#div2k) instructions.
+* ***Evaluation:*** Download validation images by ```cd ./data && bash download_eval_data.sh``` (506 Mb).
 
 
 ## Dependencies
@@ -24,6 +24,7 @@ The students are learned on the DF2K dataset (A merged training dataset of [DIV2
 1. Download the WaveGlow teacher and pretrained students:
 ```cd ./pretrained_models && bash download_pretrained_models.sh```
 2. Prepare the datasets
-3. **Training** ` cd ./scripts && bash train_wg_student_v{1,2,3}.sh`
-   **Evaluation** `./notebooks/evaluate_x{4,8}.ipynb`.
+3. ***Training:*** ` cd ./scripts && bash train_wg_student_v{1,2,3}.sh`
+
+   ***Evaluation:*** `./notebooks/evaluate_x{4,8}.ipynb`
 

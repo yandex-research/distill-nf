@@ -1,6 +1,6 @@
 # Distilling the Knowledge from Normalizing Flows
 
-Official implementation of the paper [Distilling the Knowledge from Normalizing Flows](TODO) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
+Official implementation of the paper [Distilling the Knowledge from Normalizing Flows](https://openreview.net/forum?id=fEPhiuZS9TV) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
 
 ## Overview
 

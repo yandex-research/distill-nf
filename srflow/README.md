@@ -9,8 +9,8 @@ The students are learned on the DF2K dataset (A merged training dataset of [DIV2
 
 ### Preparation Steps
 
-* ***Training:*** Download the preprocessed train sets by ```cd ./data && bash download_train_data.sh``` (56 Gb). The data is preprocessed according to the [BasicSR](https://github.com/xinntao/BasicSR/blob/master/docs/DatasetPreparation.md#div2k) instructions.
-* ***Evaluation:*** Download validation images by ```cd ./data && bash download_eval_data.sh``` (506 Mb).
+* ***Training:*** Download the preprocessed train sets: ```cd ./data && bash download_train_data.sh``` (56 Gb). The data is preprocessed according to the [BasicSR](https://github.com/xinntao/BasicSR/blob/master/docs/DatasetPreparation.md#div2k) instructions.
+* ***Evaluation:*** Download validation images: ```cd ./data && bash download_eval_data.sh``` (506 Mb).
 
 
 ## Dependencies

@@ -1,0 +1,12 @@
+torch==1.7.0
+torchvision==0.8.1
+tensorboard==2.4.1
+jupyter==1.0.0
+natsort==7.1.1
+PyYAML==5.4.1
+opencv-python==4.4.0.46
+matplotlib==3.3.4
+scikit-image==0.17.2
+pandas==1.1.4
+tqdm==4.61.0
+lpips==0.1.3

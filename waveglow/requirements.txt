@@ -1,0 +1,9 @@
+
+torch==1.6.0
+torchvision==0.7.0
+tensorboard==2.4.1
+tqdm==4.59.0
+librosa==0.7.2
+numba==0.48
+jupyter==1.0.0
+matplotlib==3.3.4

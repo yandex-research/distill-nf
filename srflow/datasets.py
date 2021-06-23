@@ -13,7 +13,7 @@ class DF2K(Dataset):
     """DF2K dataset --- a merged training dataset of DIV2K and Flickr2K
     Parameters:
         root (str)  -- path to the DIV2K and Flickr2K datasets
-        split (str) -- dataset phase 'train' | 'val' | 'test'
+        split (str) -- dataset split: 'train' | 'val' | 'test'
         scale (int) -- SR scaling factor
         GT_size (int) -- HR patch size
         totensor (bool) -- whether to transform images to tensors or not 
@@ -60,7 +60,7 @@ class DF2K(Dataset):
             self.pad_factor = 2
             LR_image = impad(LR_image, bottom=int(np.ceil(h / self.pad_factor) * self.pad_factor - h),
                                        right=int(np.ceil(w / self.pad_factor) * self.pad_factor - w))
-
+                                       
         if self.transform:
             LR_image = self.transform(LR_image)
             HR_image = self.transform(HR_image)
@@ -98,7 +98,6 @@ class EvalDataset(Dataset):
         if self.transform is None:
             return Image.fromarray(LR_image), Image.fromarray(HR_image)
 
-        print(LR_image, np.array(LR_image))
         LR_image = self.transform(np.array(LR_image))
         HR_image = self.transform(np.array(HR_image))
         return LR_image, HR_image

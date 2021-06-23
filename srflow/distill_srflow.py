@@ -56,7 +56,7 @@ def train(args):
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
 
-    logger = Logger(args.logdir, args.eval_interval)
+    logger = Logger(args.logdir, args.ckpt_interval)
 
     #######################
     # Load SRFlow Teacher #
@@ -103,6 +103,7 @@ def train(args):
     ###############################
 
     ckpt = Logger.load_last_checkpoint(args.logdir)
+    step = ckpt.get('step', 0)
     start_epoch = ckpt.get('epoch', 0)
     log.info("Training from epoch {}".format(start_epoch + 1))
     if ckpt['state_dict']:
@@ -131,8 +132,6 @@ def train(args):
 
     train_dataset = DF2K(args.dataset, split='train', scale=opt['scale'], 
                          GT_size=args.patch_size, totensor=transforms.ToTensor())
-    assert len(train_dataset) == 139579  # TODO: remove
-
     train_loader = data.DataLoader(
         train_dataset,
         num_workers=8,
@@ -195,11 +194,11 @@ def train(args):
                     log.info("Skip. Loss {} Grad {}".format(loss_value, grad_norm))
                 else:
                     optimizer.step()
+                    step += 1
 
                 optimizer.zero_grad()
                 
                 # Logging 
-                step = optimizer._step_count
                 logger.add_scalar("train/loss", loss.item(), step)
                 logger.add_scalar("train/mae", mae.item(), step)
                 logger.add_scalar("train/lpips_loss", lpips_loss.item(), step)
@@ -235,7 +234,7 @@ def train(args):
 
         scheduler.step()
         log.info(f'Save checkpoint after {epoch} epochs')
-        logger.save_checkpoint(student_model, optimizer, scheduler, epoch) 
+        logger.save_checkpoint(student_model, optimizer, scheduler, epoch, step) 
 
     # Final student evaluation
     student_model.train(False)

@@ -1,5 +1,4 @@
 from torch.utils.tensorboard import SummaryWriter
-import subprocess as sp
 import torch
 import os
 import logging
@@ -31,6 +30,7 @@ class Logger(SummaryWriter):
 
         if len(epochs) == 0:
             return {
+                'step':0,
                 'epoch': 0,
                 'state_dict': None,
                 'optimizer_state_dict': None,
@@ -40,8 +40,9 @@ class Logger(SummaryWriter):
         return torch.load(os.path.join(logdir, "{:03d}_snapshot.pth".format(max(epochs))), map_location="cpu")
 
     @profiler("save_checkpoint")
-    def save_checkpoint(self, model, optimizer, scheduler, epoch):
+    def save_checkpoint(self, model, optimizer, scheduler, epoch, step):
         torch.save({
+            'step': step, 
             'epoch': epoch,
             'state_dict': model.module.state_dict() if hasattr(model, 'module') else model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict(),

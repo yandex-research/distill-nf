@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
    WaveGlow distillation script
-   this is a modified version of train_waveglow.py that can be used to distill an existing waveglow model into
-   a non-flow student (see models.students) by minimizing a mixture of MAE and STFT losses.
 """
 
 import torch

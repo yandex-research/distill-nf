@@ -28,3 +28,7 @@ The students are learned on the DF2K dataset (A merged training dataset of [DIV2
 
    ***Evaluation:*** `./notebooks/evaluate_x{4,8}.ipynb`
 
+## Qualitative results
+
+<img src="./figures/baboon_x4.png" width="100%">
+<img src="./figures/castle_x4.png" width="100%">

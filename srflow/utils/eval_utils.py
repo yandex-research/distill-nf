@@ -56,6 +56,7 @@ def compute_validation_metrics(model, opt, dataset, pad_factor=2, epses=None, is
     measure = Measure(use_gpu=True)
     df = None
     for (lr, hr) in dataset:
+        lr, hr = np.array(lr), np.array(hr)
         h, w, _ = lr.shape
         lq_orig = lr.copy()
         lr = impad(lr, bottom=int(np.ceil(h / pad_factor) * pad_factor - h),

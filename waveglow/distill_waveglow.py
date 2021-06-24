@@ -221,8 +221,8 @@ def train(args):
 
     distillation_loss = DistillationLoss(
         model, infer_teacher, infer_teacher=infer_teacher, teacher_dtype=torch.float16,
-        stft_loss_coeff=args.stft_loss_coeff, mel=True, log=True,
-        hop_length=args.hop_length, win_length=args.win_length, num_mels=args.n_mel_channels)
+        stft_loss_coeff=args.stft_loss_coeff, hop_length=args.hop_length, 
+        win_length=args.win_length, num_mels=args.n_mel_channels)
 
     model.train()
     stop = False

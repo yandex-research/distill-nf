@@ -1,6 +1,6 @@
-# Distilling the Knowledge from Normalizing Flows
+# Distilling the Knowledge from Conditional Normalizing Flows
 
-Official implementation of the paper [Distilling the Knowledge from Normalizing Flows](https://openreview.net/forum?id=fEPhiuZS9TV) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
+Official implementation of the paper [Distilling the Knowledge from Conditional Normalizing Flows](https://openreview.net/forum?id=fEPhiuZS9TV) (ICMLW'2021) by Dmitry Baranchuk, Vladimir Aliev, Artem Babenko.
 
 ## Overview
 
@@ -17,7 +17,7 @@ The detailed descriptions of the super-resolution and speech synthesis applicati
 
 ```
 @inproceedings{baranchuk2021distilling,
-    title={Distilling the Knowledge from Normalizing Flows},
+    title={Distilling the Knowledge from Conditional Normalizing Flows},
     author={Dmitry Baranchuk and Vladimir Aliev and Artem Babenko},
     booktitle={ICML Workshop on Invertible Neural Networks, Normalizing Flows, and Explicit Likelihood Models},
     year={2021},
